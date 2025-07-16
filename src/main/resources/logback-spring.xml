@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="HTTP" class="com.example.httplogger.logging.HttpAppender">
+        <!-- O endpoint para onde os logs serão enviados -->
+        <!-- Use uma URL de um serviço como o Vector ou um mock server para testar -->
+        <endpoint>http://localhost:8081/log</endpoint>
+        <!-- Número de retentativas em caso de falha -->
+        <retries>5</retries>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="HTTP" />
+    </root>
+
+</configuration>
